@@ -21,4 +21,5 @@ Array *filter(Array *src, Predicate predicate);
 int reduce(Array *src, int init, Reducer reducer);
 
 Array *create_array(int length);
+void display_array(Array *array);
 #endif

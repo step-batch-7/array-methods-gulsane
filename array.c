@@ -9,3 +9,11 @@ Array *create_array(int length)
   new_array->length = 0;
   return new_array;
 }
+
+void display_array(Array *array)
+{
+  for (size_t i = 0; i < array->length; i++)
+  {
+    printf("%d\n", array->array[i]);
+  }
+}
