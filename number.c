@@ -15,6 +15,11 @@ Bool is_greater_than_ten(int number)
   return False;
 }
 
+int sum(int num1, int num2)
+{
+  return num1 + num2;
+}
+
 int main(void)
 {
   Array *array = create_array(10);
@@ -31,4 +36,7 @@ int main(void)
   Array *greater_than_ten = filter(mul_of_two, &is_greater_than_ten);
   printf("greater than ten:\n");
   display_array(greater_than_ten);
+
+  int sum_of_numbers = reduce(array, 0, &sum);
+  printf("sum of numbers in list: %d\n", sum_of_numbers);
 }

@@ -18,26 +18,26 @@ void display_array(Array *array)
   }
 }
 
-Array *map(Array *src, Mapper callback)
+Array *map(Array *src, Mapper mapper)
 {
   Array *new_array = create_array(src->length);
 
   for (size_t i = 0; i < src->length; i++)
   {
-    new_array->array[i] = (*callback)(src->array[i]);
+    new_array->array[i] = (*mapper)(src->array[i]);
   }
 
   return new_array;
 }
 
-Array *filter(Array *src, Predicate callback)
+Array *filter(Array *src, Predicate predicate)
 {
   int matched_count = 0;
   int temp_array[src->length];
 
   for (size_t i = 0; i < src->length; i++)
   {
-    if ((*callback)(src->array[i]))
+    if ((*predicate)(src->array[i]))
     {
       temp_array[matched_count] = src->array[i];
       matched_count++;
@@ -52,4 +52,14 @@ Array *filter(Array *src, Predicate callback)
   }
 
   return new_array;
+}
+
+int reduce(Array *src, int init, Reducer reducer)
+{
+  int result = init;
+  for (size_t i = 0; i < src->length; i++)
+  {
+    result = (*reducer)(result, src->array[i]);
+  }
+  return result;
 }
