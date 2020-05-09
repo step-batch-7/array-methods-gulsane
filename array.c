@@ -29,3 +29,27 @@ Array *map(Array *array, Mapper callback)
 
   return new_array;
 }
+
+Array *filter(Array *array, Predicate callback)
+{
+  int matched_count = 0;
+  int temp_array[array->length];
+
+  for (size_t i = 0; i < array->length; i++)
+  {
+    if ((*callback)(array->array[i]))
+    {
+      temp_array[matched_count] = array->array[i];
+      matched_count++;
+    }
+  }
+
+  Array *new_array = create_array(matched_count);
+
+  for (size_t i = 0; i < matched_count; i++)
+  {
+    new_array->array[i] = temp_array[i];
+  }
+
+  return new_array;
+}

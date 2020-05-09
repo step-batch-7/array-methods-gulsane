@@ -6,6 +6,15 @@ int mul_by_two(int number)
   return number * 2;
 }
 
+Bool is_greater_than_ten(int number)
+{
+  if (number > 10)
+  {
+    return True;
+  }
+  return False;
+}
+
 int main(void)
 {
   Array *array = create_array(10);
@@ -15,6 +24,11 @@ int main(void)
     array->array[i] = i + 1;
   }
 
-  Array *mapped_array = map(array, &mul_by_two);
-  display_array(mapped_array);
+  Array *mul_of_two = map(array, &mul_by_two);
+  printf("multiple of twos:\n");
+  display_array(mul_of_two);
+
+  Array *greater_than_ten = filter(mul_of_two, &is_greater_than_ten);
+  printf("greater than ten:\n");
+  display_array(greater_than_ten);
 }
