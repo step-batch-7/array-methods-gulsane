@@ -18,28 +18,28 @@ void display_array(Array *array)
   }
 }
 
-Array *map(Array *array, Mapper callback)
+Array *map(Array *src, Mapper callback)
 {
-  Array *new_array = create_array(array->length);
+  Array *new_array = create_array(src->length);
 
-  for (size_t i = 0; i < array->length; i++)
+  for (size_t i = 0; i < src->length; i++)
   {
-    new_array->array[i] = (*callback)(array->array[i]);
+    new_array->array[i] = (*callback)(src->array[i]);
   }
 
   return new_array;
 }
 
-Array *filter(Array *array, Predicate callback)
+Array *filter(Array *src, Predicate callback)
 {
   int matched_count = 0;
-  int temp_array[array->length];
+  int temp_array[src->length];
 
-  for (size_t i = 0; i < array->length; i++)
+  for (size_t i = 0; i < src->length; i++)
   {
-    if ((*callback)(array->array[i]))
+    if ((*callback)(src->array[i]))
     {
-      temp_array[matched_count] = array->array[i];
+      temp_array[matched_count] = src->array[i];
       matched_count++;
     }
   }
