@@ -16,10 +16,12 @@ typedef struct
   int length;
 } Array;
 
-Array *map(Array *src, Mapper mapper);
-Array *filter(Array *src, Predicate predicate);
-int reduce(Array *src, int init, Reducer reducer);
+typedef Array *Array_Ptr;
 
-Array *create_array(int length);
-void display_array(Array *array);
+Array_Ptr map(Array_Ptr src, Mapper mapper);
+Array_Ptr filter(Array_Ptr src, Predicate predicate);
+int reduce(Array_Ptr src, int init, Reducer reducer);
+
+Array_Ptr create_array(int length);
+void display_array(Array_Ptr array);
 #endif

@@ -22,18 +22,18 @@ int sum(int num1, int num2)
 
 int main(void)
 {
-  Array *array = create_array(10);
+  Array_Ptr array = create_array(10);
 
   for (size_t i = 0; i < array->length; i++)
   {
     array->array[i] = i + 1;
   }
 
-  Array *mul_of_two = map(array, &mul_by_two);
+  Array_Ptr mul_of_two = map(array, &mul_by_two);
   printf("multiple of twos:\n");
   display_array(mul_of_two);
 
-  Array *greater_than_ten = filter(mul_of_two, &is_greater_than_ten);
+  Array_Ptr greater_than_ten = filter(mul_of_two, &is_greater_than_ten);
   printf("greater than ten:\n");
   display_array(greater_than_ten);
 

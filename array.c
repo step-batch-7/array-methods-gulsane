@@ -2,15 +2,15 @@
 #include <stdlib.h>
 #include "array.h"
 
-Array *create_array(int length)
+Array_Ptr create_array(int length)
 {
-  Array *new_array = (Array *)malloc(sizeof(Array));
+  Array_Ptr new_array = (Array_Ptr)malloc(sizeof(Array));
   new_array->array = (int *)malloc(sizeof(int) * length);
   new_array->length = length;
   return new_array;
 }
 
-void display_array(Array *array)
+void display_array(Array_Ptr array)
 {
   for (size_t i = 0; i < array->length; i++)
   {
@@ -18,9 +18,9 @@ void display_array(Array *array)
   }
 }
 
-Array *map(Array *src, Mapper mapper)
+Array_Ptr map(Array_Ptr src, Mapper mapper)
 {
-  Array *new_array = create_array(src->length);
+  Array_Ptr new_array = create_array(src->length);
 
   for (size_t i = 0; i < src->length; i++)
   {
@@ -30,7 +30,7 @@ Array *map(Array *src, Mapper mapper)
   return new_array;
 }
 
-Array *filter(Array *src, Predicate predicate)
+Array_Ptr filter(Array_Ptr src, Predicate predicate)
 {
   int matched_count = 0;
   int temp_array[src->length];
@@ -44,7 +44,7 @@ Array *filter(Array *src, Predicate predicate)
     }
   }
 
-  Array *new_array = create_array(matched_count);
+  Array_Ptr new_array = create_array(matched_count);
 
   for (size_t i = 0; i < matched_count; i++)
   {
@@ -54,7 +54,7 @@ Array *filter(Array *src, Predicate predicate)
   return new_array;
 }
 
-int reduce(Array *src, int init, Reducer reducer)
+int reduce(Array_Ptr src, int init, Reducer reducer)
 {
   int result = init;
   for (size_t i = 0; i < src->length; i++)
