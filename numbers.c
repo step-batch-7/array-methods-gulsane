@@ -47,19 +47,19 @@ void perform_array_methods(void)
 
 void display_number(Object number)
 {
-  printf("%d\n", *(int *)number);
+  printf("%d\n", *(Int_Ptr)number);
 }
 
 Object give_double_of(Object number)
 {
-  int *memory = (int *)malloc(sizeof(int));
-  *memory = *(int *)number * 2;
+  Int_Ptr memory = (Int_Ptr)malloc(sizeof(int));
+  *memory = *(Int_Ptr)number * 2;
   return (Object)memory;
 }
 
 Bool is_even(Object number)
 {
-  if (*(int *)number % 2 == 0)
+  if (*(Int_Ptr)number % 2 == 0)
   {
     return True;
   }
@@ -68,8 +68,8 @@ Bool is_even(Object number)
 
 Object give_sum_of_numbers(Object num1, Object num2)
 {
-  int *memory = (int *)malloc(sizeof(int));
-  *memory = *(int *)num1 + *(int *)num2;
+  Int_Ptr memory = (Int_Ptr)malloc(sizeof(int));
+  *memory = *(Int_Ptr)num1 + *(Int_Ptr)num2;
   return (Object)memory;
 }
 
@@ -77,7 +77,7 @@ void perform_array_void_methods(void)
 {
   printf("\nPerforming array void methods...\n");
   ArrayVoid_ptr numbers = create_array_void(10);
-  int *a;
+  Int_Ptr a;
   for (size_t i = 0; i < numbers->length; i++)
   {
     a = malloc(sizeof(int));
@@ -96,10 +96,10 @@ void perform_array_void_methods(void)
   printf("even numbers:\n");
   display_array_void(even_numbers, &display_number);
 
-  int *init = (int *)malloc(sizeof(int));
+  Int_Ptr init = (Int_Ptr)malloc(sizeof(int));
   *init = 0;
   Object sum_of_numbers = reduce_void(numbers, (Object)init, give_sum_of_numbers);
-  printf("sum of numbers: %d\n", *(int *)sum_of_numbers);
+  printf("sum of numbers: %d\n", *(Int_Ptr)sum_of_numbers);
   printf("ArrayVoid methods finished...\n");
 }
 

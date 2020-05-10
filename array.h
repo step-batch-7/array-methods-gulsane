@@ -6,6 +6,7 @@ typedef enum
   True
 } Bool;
 
+typedef int *Int_Ptr;
 typedef int (*Mapper)(int);
 typedef Bool (*Predicate)(int);
 typedef int (*Reducer)(int, int);
