@@ -52,3 +52,13 @@ ArrayVoid_ptr filter_void(ArrayVoid_ptr src, PredicateVoid predicate)
 
   return des;
 }
+
+Object reduce_void(ArrayVoid_ptr src, Object init, ReducerVoid reducer)
+{
+  Object result = init;
+  for (size_t i = 0; i < src->length; i++)
+  {
+    result = (*reducer)(result, src->array[i]);
+  }
+  return result;
+}

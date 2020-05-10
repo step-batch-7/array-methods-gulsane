@@ -66,6 +66,13 @@ Bool is_even(Object number)
   return False;
 }
 
+Object give_sum_of_numbers(Object num1, Object num2)
+{
+  int *memory = (int *)malloc(sizeof(int));
+  *memory = *(int *)num1 + *(int *)num2;
+  return (Object)memory;
+}
+
 void perform_array_void_methods(void)
 {
   printf("\nPerforming array void methods...\n");
@@ -88,6 +95,12 @@ void perform_array_void_methods(void)
   ArrayVoid_ptr even_numbers = filter_void(numbers, &is_even);
   printf("even numbers:\n");
   display_array_void(even_numbers, &display_number);
+
+  int *init = (int *)malloc(sizeof(int));
+  *init = 0;
+  Object sum_of_numbers = reduce_void(numbers, (Object)init, give_sum_of_numbers);
+  printf("sum of numbers: %d\n", *(int *)sum_of_numbers);
+  printf("ArrayVoid methods finished...\n");
 }
 
 int main(void)
