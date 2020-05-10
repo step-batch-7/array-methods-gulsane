@@ -5,7 +5,7 @@
 Array_Ptr create_array(int length)
 {
   Array_Ptr new_array = (Array_Ptr)malloc(sizeof(Array));
-  new_array->array = (int *)malloc(sizeof(int) * length);
+  new_array->array = length == 0 ? NULL : (int *)malloc(sizeof(int) * length);
   new_array->length = length;
   return new_array;
 }
