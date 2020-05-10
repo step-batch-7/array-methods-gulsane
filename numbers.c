@@ -45,9 +45,9 @@ void perform_array_methods(void)
   printf("Array methods finished...\n");
 }
 
-void display_number(Object alphabet)
+void display_number(Object number)
 {
-  printf("%d\n", *(int *)alphabet);
+  printf("%d\n", *(int *)number);
 }
 
 Object give_double_of(Object number)
@@ -55,6 +55,15 @@ Object give_double_of(Object number)
   int *memory = (int *)malloc(sizeof(int));
   *memory = *(int *)number * 2;
   return (Object)memory;
+}
+
+Bool is_even(Object number)
+{
+  if (*(int *)number % 2 == 0)
+  {
+    return True;
+  }
+  return False;
 }
 
 void perform_array_void_methods(void)
@@ -75,6 +84,10 @@ void perform_array_void_methods(void)
   ArrayVoid_ptr double_of_numbers = map_void(numbers, &give_double_of);
   printf("double of numbers:\n");
   display_array_void(double_of_numbers, &display_number);
+
+  ArrayVoid_ptr even_numbers = filter_void(numbers, &is_even);
+  printf("even numbers:\n");
+  display_array_void(even_numbers, &display_number);
 }
 
 int main(void)

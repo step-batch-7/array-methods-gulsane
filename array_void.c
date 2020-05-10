@@ -29,3 +29,26 @@ ArrayVoid_ptr map_void(ArrayVoid_ptr src, MapperVoid mapper)
 
   return des;
 }
+
+ArrayVoid_ptr filter_void(ArrayVoid_ptr src, PredicateVoid predicate)
+{
+  Object temp_array[src->length];
+  int matched_count = 0;
+
+  for (size_t i = 0; i < src->length; i++)
+  {
+    if ((*predicate)(src->array[i]))
+    {
+      temp_array[matched_count] = src->array[i];
+      matched_count++;
+    }
+  }
+
+  ArrayVoid_ptr des = create_array_void(matched_count);
+  for (size_t i = 0; i < matched_count; i++)
+  {
+    des->array[i] = temp_array[i];
+  }
+
+  return des;
+}
